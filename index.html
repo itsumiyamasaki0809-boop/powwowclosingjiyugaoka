@@ -48,6 +48,18 @@
         .subs-mini { border: 1px solid #e5e7eb; transition: all 0.2s; }
         .subs-mini:hover { border-color: #F4A6B6; box-shadow: 0 4px 16px rgba(233,139,159,0.12); }
 
+        /* ===== プランアコーディオン ===== */
+        .plan-accordion-body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;
+            opacity: 0;
+        }
+        .plan-accordion-body.open { max-height: 1000px; opacity: 1; }
+        .plan-accordion-btn { transition: background-color 0.2s ease; }
+        .plan-accordion-btn:hover { background-color: #FFF9FA; }
+        .plan-accordion-btn .plan-chevron { transition: transform 0.3s ease; }
+        .plan-accordion-btn.open .plan-chevron { transform: rotate(180deg); }
+
         /* ===== QR ===== */
         #qr-light img, #qr-standard img, #qr-special img { margin: 0 auto; }
     </style>
@@ -77,16 +89,16 @@
 
     <!-- ===== イントロ ===== -->
     <section class="text-center max-w-2xl mx-auto mt-2">
-        <p class="text-xs font-bold text-[#E98B9F] tracking-widest mb-3 uppercase">Why POWWOW</p>
-        <h2 class="text-xl md:text-2xl font-light mb-5 text-[#5D4037] leading-loose">
-            女性の「なんとなく不調」の多くは、<br>
-            <span class="font-bold text-[#E98B9F]">骨盤の中心にある仙骨の傾き</span>から始まっています。
-        </h2>
-        <p class="text-sm text-[#8E5E65] leading-loose">
-            仙骨が傾くと、自律神経のバランスや女性ホルモンの巡りに影響し、<br>
-            ダルさ・冷え・睡眠の浅さ・イライラといった症状として現れます。<br>
-            パウワウでは、この<strong>仙骨を整えることを起点</strong>に、<br>
-            あなたに必要なケアと適切なペースをご提案します。
+        <p class="text-xs font-bold text-[#E98B9F] tracking-widest mb-4">国内で唯一ウィメンズ整体が受けられるサロン</p>
+
+        <p class="text-base md:text-lg font-bold text-[#5D4037] leading-relaxed">
+            1回目の施術の効果はいかがでしたか？<br>
+            ここから<span class="text-[#E98B9F]">3ヶ月間で根本的に体を変えて</span>いきます。<br>
+            これから、改善に向けての必要なケアと適切なペースをご説明いたします。
+        </p>
+
+        <p class="inline-block mt-5 bg-[#FFF0F3] border border-pink-200 rounded-xl px-4 py-2 text-sm font-bold text-[#E98B9F]">
+            ⚠ 何もしないと、この不調は年々強くなっていきます。
         </p>
     </section>
 
@@ -186,10 +198,9 @@
                     <span class="text-2xl">♾️</span>
                     <div>
                         <h4 class="font-bold text-lg text-[#5D4037]">月額定額プラン</h4>
-                        <p class="text-xs text-gray-400 mt-0.5">一番お得！</p>
                     </div>
                 </div>
-                <div class="flex flex-col items-end gap-1 shrink-0 mx-2">
+                <div class="flex items-center gap-2 shrink-0 mx-2">
                     <span class="text-[0.65rem] font-black text-white bg-[#E53E3E] px-2 py-0.5 rounded-full whitespace-nowrap">本日ご契約の方限定</span>
                     <div class="flex items-center gap-1">
                         <span class="text-[10px] text-gray-400 font-bold">最大</span>
@@ -207,6 +218,17 @@
                         <p class="text-sm opacity-90 mt-0.5">3つのコースから、お客様に合ったペースをお選びいただけます</p>
                     </div>
 
+                    <!-- 本日限定特典（統合・1本化） -->
+                    <div class="bg-gradient-to-r from-[#E98B9F] to-[#E53E3E] rounded-3xl p-5 max-w-2xl mx-auto text-white shadow-lg mb-6">
+                        <p class="inline-block text-xs font-black tracking-wide mb-3 bg-white text-[#E53E3E] px-3 py-1 rounded-full shadow">🎉 本日ご契約の方限定特典</p>
+                        <ul class="space-y-1.5 text-sm md:text-base font-bold leading-snug">
+                            <li class="flex items-center gap-2"><span class="text-amber-200">✓</span>施術料金 最大<span class="text-lg">30%OFF</span></li>
+                            <li class="flex items-center gap-2"><span class="text-amber-200">✓</span>加入手数料 <span class="text-lg">0円</span>（通常3,000円）</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-200">✓</span>業界初！<span class="text-lg">全額返金保証</span>つき</li>
+                        </ul>
+                        <p class="text-[11px] opacity-90 mt-3">※以下の価格は、この特典をすべて反映した「本日ご契約時の価格」です。</p>
+                    </div>
+
                     <!-- 注意書き -->
                     <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6 flex items-start gap-2 max-w-xl mx-auto">
                         <svg class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -218,160 +240,183 @@
                         </p>
                     </div>
 
-                    <!-- 松竹梅 3プラン -->
-                    <p class="text-center text-xs text-gray-400 font-bold mb-4">プランをお選びください（月2回ペース）</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-3 items-start mb-16 max-w-4xl mx-auto">
+                    <!-- 松竹梅 3プラン（縦積み・アコーディオン） -->
+                    <p class="text-center text-xs text-gray-400 font-bold mb-4">プランをタップして詳細をご確認ください（月2回ペース）</p>
+                    <div class="space-y-3 mb-10 max-w-xl mx-auto">
 
                         <!-- ライトプラン -->
-                        <div class="subs-mini bg-white rounded-2xl p-5 text-center flex flex-col">
-                            <p class="text-xs font-bold text-[#8E5E65] mb-1 tracking-wide">ライトプラン</p>
-                            <p class="text-[11px] text-gray-400 mb-3">50分整体 ・ 時短ケアに</p>
-                            <p class="text-[10px] text-gray-400 line-through mb-0.5">定価 7,600円/1回</p>
-                            <div class="inline-flex items-center justify-center gap-1 mx-auto mb-3 bg-red-50 border border-red-200 rounded-full px-3 py-1">
-                                <span class="text-base font-black text-[#E53E3E]">15%</span>
-                                <span class="text-[10px] font-bold text-[#E53E3E]">OFF</span>
-                            </div>
-                            <div class="flex items-center justify-center gap-2 mb-0.5">
-                                <div class="text-2xl font-black text-[#5D4037]">6,460<span class="text-sm">円</span></div>
-                                <span class="text-[10px] font-bold text-[#E53E3E] bg-red-50 px-2 py-0.5 rounded-full whitespace-nowrap">1,140円お得!</span>
-                            </div>
-                            <p class="text-[10px] text-gray-400 mb-3">/1回（月額定額プラン）</p>
-                            <div class="bg-gray-50 rounded-xl p-2 mb-4">
-                                <div class="flex items-center justify-center gap-2">
-                                    <div class="text-lg font-black text-[#5D4037]">12,920円</div>
-                                    <span class="text-[10px] font-bold text-[#E53E3E] bg-red-50 px-2 py-0.5 rounded-full whitespace-nowrap">2,280円お得!</span>
+                        <div class="subs-mini bg-white rounded-2xl overflow-hidden">
+                            <button onclick="togglePlan('plan-light')" id="btn-plan-light" class="plan-accordion-btn w-full flex items-center gap-3 p-4 text-left">
+                                <div class="flex-1 text-center">
+                                    <p class="text-sm text-[#8E5E65]"><span class="font-bold tracking-wide">ライトプラン</span><span class="text-[11px] text-gray-400"> ・ 50分整体 ・ 時短ケアに</span></p>
                                 </div>
-                                <div class="text-[10px] text-gray-400">/2回（月額定額プラン）</div>
-                            </div>
-                            <div class="mt-auto border-t border-dashed border-gray-100 pt-4">
-                                <p class="text-[10px] font-bold text-gray-400 mb-2">＼こちらからお申し込み／</p>
-                                <div class="flex flex-col items-center gap-1.5">
-                                    <span class="inline-flex items-center gap-1 bg-gradient-to-br from-amber-300 to-amber-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow">🎁 特典</span>
-                                    <div id="qr-light" class="bg-white p-1 inline-block border-2 border-amber-300 rounded-lg shadow-inner"></div>
-                                </div>
-                                <div class="text-[0.6rem] text-gray-300 break-all mt-1" id="url-light"></div>
-                            </div>
-                        </div>
+                                <svg class="plan-chevron w-5 h-5 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div id="plan-light" class="plan-accordion-body">
+                                <div class="px-5 pb-5 pt-1 text-center border-t border-dashed border-gray-100">
+                                    <p class="text-base font-bold text-gray-500 mt-3 mb-3">本日ご契約価格</p>
 
-                        <!-- スタンダードプラン（主役） -->
-                        <div class="bg-white rounded-3xl p-6 text-center flex flex-col relative border-[3px] border-[#E98B9F] shadow-[0_12px_40px_rgba(233,139,159,0.25)] md:scale-[1.02] md:origin-top z-10">
-                            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-400 text-white text-[11px] font-bold px-4 py-1 rounded-full border-2 border-white whitespace-nowrap shadow">⭐ 人気No.1！！</span>
-                            <p class="text-sm font-bold text-[#E98B9F] mb-1 tracking-wide mt-2">スタンダードプラン</p>
-                            <p class="text-[11px] text-[#8E5E65] mb-3">80分整体（オイル併用も可）</p>
-                            <p class="text-sm text-gray-400 line-through mb-1">定価 12,160円/1回</p>
-                            <div class="inline-flex items-center justify-center gap-1 mx-auto mb-3 bg-[#FFF5F7] border border-pink-200 rounded-full px-4 py-1">
-                                <span class="text-xl font-black text-[#E98B9F]">20%</span>
-                                <span class="text-xs font-bold text-[#E98B9F]">OFF</span>
-                            </div>
-                            <div class="flex items-center justify-center gap-2 mb-0.5">
-                                <div class="text-2xl font-black text-[#5D4037]">9,728<span class="text-sm">円</span></div>
-                                <span class="text-[10px] font-bold text-[#E53E3E] bg-red-50 px-2 py-0.5 rounded-full whitespace-nowrap">2,432円お得!</span>
-                            </div>
-                            <p class="text-[10px] text-gray-400 mb-3">/1回（月額定額プラン）</p>
-                            <div class="bg-[#FFF5F7] rounded-xl p-2.5 border border-pink-100 mb-3">
-                                <div class="flex items-center justify-center gap-2">
-                                    <div class="text-xl font-black text-[#5D4037]">19,456円</div>
-                                    <span class="text-[10px] font-bold text-[#E53E3E] bg-red-50 px-2 py-0.5 rounded-full whitespace-nowrap">4,864円お得!</span>
-                                </div>
-                                <div class="text-[10px] text-gray-400">/2回（月額定額プラン）</div>
-                            </div>
+                                    <button onclick="toggleAccordion('light-1kai')" class="accordion-btn w-full flex items-center justify-between px-3 py-2.5 bg-gray-50 rounded-xl mb-2">
+                                        <span class="text-sm font-bold text-gray-500">1回あたりの料金（月2回利用の場合）</span>
+                                        <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="light-1kai" class="accordion-body">
+                                        <div class="flex items-end justify-center gap-2 mb-2 mt-2 flex-wrap">
+                                            <span class="text-base text-gray-400 line-through decoration-red-400 decoration-2">定価 7,600円/1回</span>
+                                            <div class="flex items-baseline gap-1">
+                                                <div class="text-base font-black text-[#5D4037]">6,460</div>
+                                                <div class="text-base font-bold text-[#5D4037]">円 / 1回</div>
+                                            </div>
+                                            <span class="inline-block text-xs font-bold text-white bg-[#E53E3E] px-3 py-1 rounded-full whitespace-nowrap">1,140円お得（15%OFF）</span>
+                                        </div>
+                                    </div>
 
-                            <!-- 初回限定 30%OFF ハイライト -->
-                            <div class="bg-gradient-to-r from-[#E53E3E] to-[#F4695E] rounded-2xl p-3 mb-4 text-white relative overflow-hidden animate-pulse">
-                                <p class="inline-block text-xs font-black tracking-wide mb-2 bg-white text-[#E53E3E] px-3 py-1 rounded-full shadow">🎉 初回のご契約限定キャンペーン第一弾!!</p>
-                                <p class="text-sm font-black leading-tight mb-1">今だけ 20%OFF→<span class="text-lg">30%OFF</span>！！</p>
-                                <div class="flex items-baseline justify-center gap-1 flex-wrap">
-                                    <span class="text-[11px] line-through opacity-80">定価 12,160円/1回</span>
-                                    <span class="text-2xl font-black">8,512円</span>
-                                    <span class="text-[10px] font-bold bg-amber-300 text-white px-2 py-0.5 rounded-full whitespace-nowrap">3,648円お得!</span>
-                                    <span class="text-[10px]">/1回（月額定額プラン）</span>
-                                </div>
-                                <div class="bg-white/20 rounded-xl p-2.5 border border-white/40 mt-2">
-                                    <div class="text-[10px] opacity-90 mb-0.5">（初回限定キャンペーン価格）</div>
-                                    <div class="text-[11px] line-through opacity-70">定価 24,320円/2回</div>
-                                    <div class="flex items-center justify-center gap-2 flex-wrap">
-                                        <span class="text-xl font-black text-white">17,024円/2回（月額定額プラン）</span>
-                                        <span class="text-[10px] font-bold bg-amber-300 text-white px-2 py-0.5 rounded-full whitespace-nowrap">7,296円お得!</span>
+                                    <button onclick="toggleAccordion('light-2kai')" class="accordion-btn w-full flex items-center justify-between px-3 py-2.5 bg-gray-50 rounded-xl mb-4">
+                                        <span class="text-sm font-bold text-gray-500">2回（月額）の料金</span>
+                                        <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="light-2kai" class="accordion-body">
+                                        <div class="rounded-xl p-3 mb-2 mt-2 flex items-baseline justify-center gap-2 flex-nowrap">
+                                            <span class="text-base text-gray-400 line-through decoration-red-400 decoration-2 whitespace-nowrap">定価15,200円/2回</span>
+                                            <span class="text-4xl font-black text-[#5D4037] whitespace-nowrap">12,920円<span class="text-base font-bold text-[#5D4037]">/2回</span></span>
+                                            <span class="inline-block text-xs font-bold text-white bg-[#E53E3E] px-3 py-1 rounded-full whitespace-nowrap">2,280円お得（15%OFF）</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-t border-dashed border-gray-100 pt-4">
+                                        <p class="text-[10px] font-bold text-gray-400 mb-2">＼こちらからお申し込み／</p>
+                                        <div class="flex flex-col items-center gap-1.5">
+                                            <span class="inline-flex items-center gap-1 bg-gradient-to-br from-amber-300 to-amber-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow">🎁 特典</span>
+                                            <div id="qr-light" class="bg-white p-1 inline-block border-2 border-amber-300 rounded-lg shadow-inner"></div>
+                                        </div>
+                                        <div class="text-[0.6rem] text-gray-300 break-all mt-1" id="url-light"></div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="mt-auto border-t border-dashed border-pink-100 pt-4">
-                                <p class="text-[10px] font-bold text-[#E98B9F] mb-2">＼初回限定30%OFFで申し込む／</p>
-                                <div class="flex flex-col items-center gap-1.5">
-                                    <span class="inline-flex items-center gap-1 bg-gradient-to-br from-amber-300 to-amber-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow">🎁 特典</span>
-                                    <div id="qr-standard" class="bg-white p-1 inline-block border-2 border-[#E98B9F] rounded-lg shadow-[0_0_16px_rgba(233,139,159,0.5)] animate-pulse"></div>
+                        <!-- スタンダードプラン（主役・初期表示で開いておく） -->
+                        <div class="relative z-10">
+                            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-white text-[11px] font-bold tracking-wide px-4 py-1 rounded-full border-2 border-white whitespace-nowrap shadow z-20">⭐ 人気 No.1 ！！</span>
+                            <div class="bg-white rounded-3xl overflow-hidden border-[3px] border-[#E98B9F] shadow-[0_12px_40px_rgba(233,139,159,0.25)]">
+                            <button onclick="togglePlan('plan-standard')" id="btn-plan-standard" class="plan-accordion-btn open w-full flex items-center gap-3 p-4 pt-5 text-left">
+                                <div class="flex-1 text-center">
+                                    <p class="text-sm"><span class="font-bold text-[#E98B9F] tracking-wide">スタンダードプラン</span><span class="text-[11px] text-[#8E5E65]"> ・ 80分整体（オイル併用も可）</span></p>
                                 </div>
-                                <div class="text-[0.6rem] text-gray-300 break-all mt-1" id="url-standard"></div>
+                                <svg class="plan-chevron w-5 h-5 text-[#E98B9F] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div id="plan-standard" class="plan-accordion-body open">
+                                <div class="px-6 pb-6 pt-1 text-center border-t border-dashed border-pink-100">
+                                    <p class="text-sm font-bold text-[#E98B9F] mt-3 mb-3">本日ご契約価格（30%OFF）</p>
+
+                                    <button onclick="toggleAccordion('standard-1kai')" class="accordion-btn w-full flex items-center justify-between px-3 py-2.5 bg-[#FFF5F7] rounded-xl mb-2">
+                                        <span class="text-sm font-bold text-[#E98B9F]">1回あたりの料金（月2回利用の場合）</span>
+                                        <svg class="chevron w-4 h-4 text-[#E98B9F] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="standard-1kai" class="accordion-body">
+                                        <div class="flex items-end justify-center gap-2 mb-2 mt-2 flex-wrap">
+                                            <span class="text-base text-gray-400 line-through decoration-red-400 decoration-2 whitespace-nowrap">定価 12,160円/1回</span>
+                                            <div class="flex items-baseline gap-1">
+                                                <div class="text-base font-black text-[#5D4037]">8,512</div>
+                                                <div class="text-base font-bold text-[#5D4037]">円 / 1回</div>
+                                            </div>
+                                            <span class="inline-block text-xs font-bold text-white bg-[#E53E3E] px-3 py-1 rounded-full whitespace-nowrap">3,648円お得（30%OFF）</span>
+                                        </div>
+                                    </div>
+
+                                    <button onclick="toggleAccordion('standard-2kai')" class="accordion-btn w-full flex items-center justify-between px-3 py-2.5 bg-[#FFF5F7] rounded-xl mb-4">
+                                        <span class="text-sm font-bold text-[#E98B9F]">2回（月額）の料金</span>
+                                        <svg class="chevron w-4 h-4 text-[#E98B9F] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="standard-2kai" class="accordion-body">
+                                        <div class="rounded-xl p-3 border border-pink-100 mb-2 mt-2 flex items-baseline justify-center gap-2 flex-nowrap">
+                                            <span class="text-base text-gray-400 line-through decoration-red-400 decoration-2 whitespace-nowrap">定価24,320円/2回</span>
+                                            <span class="text-4xl font-black text-[#5D4037] whitespace-nowrap">17,024円<span class="text-base font-bold text-[#5D4037]">/2回</span></span>
+                                            <span class="inline-block text-xs font-bold text-white bg-[#E53E3E] px-3 py-1 rounded-full whitespace-nowrap">7,296円お得（30%OFF）</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-t border-dashed border-pink-100 pt-4">
+                                        <p class="text-[10px] font-bold text-[#E98B9F] mb-2">＼このプランで申し込む／</p>
+                                        <div class="flex flex-col items-center gap-1.5">
+                                            <span class="inline-flex items-center gap-1 bg-gradient-to-br from-amber-300 to-amber-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow">🎁 特典</span>
+                                            <div id="qr-standard" class="bg-white p-1 inline-block border-2 border-[#E98B9F] rounded-lg shadow-[0_0_16px_rgba(233,139,159,0.5)] animate-pulse"></div>
+                                        </div>
+                                        <div class="text-[0.6rem] text-gray-300 break-all mt-1" id="url-standard"></div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
 
                         <!-- スペシャルプラン -->
-                        <div class="subs-mini bg-white rounded-2xl p-5 text-center flex flex-col">
-                            <p class="text-xs font-bold text-[#8E5E65] mb-1 tracking-wide">スペシャルプラン</p>
-                            <p class="text-[11px] text-gray-400 mb-3">110分整体 ・ 最大限の結果を</p>
-                            <p class="text-[10px] text-gray-400 line-through mb-0.5">定価 16,720円/1回</p>
-                            <div class="inline-flex items-center justify-center gap-1 mx-auto mb-3 bg-red-50 border border-red-200 rounded-full px-3 py-1">
-                                <span class="text-base font-black text-[#E53E3E]">20%</span>
-                                <span class="text-[10px] font-bold text-[#E53E3E]">OFF</span>
-                            </div>
-                            <div class="flex items-center justify-center gap-2 mb-0.5">
-                                <div class="text-2xl font-black text-[#5D4037]">13,376<span class="text-sm">円</span></div>
-                                <span class="text-[10px] font-bold text-[#E53E3E] bg-red-50 px-2 py-0.5 rounded-full whitespace-nowrap">3,344円お得!</span>
-                            </div>
-                            <p class="text-[10px] text-gray-400 mb-3">/1回（月額定額プラン）</p>
-                            <div class="bg-gray-50 rounded-xl p-2 mb-3">
-                                <div class="flex items-center justify-center gap-2">
-                                    <div class="text-lg font-black text-[#5D4037]">26,752円</div>
-                                    <span class="text-[10px] font-bold text-[#E53E3E] bg-red-50 px-2 py-0.5 rounded-full whitespace-nowrap">6,688円お得!</span>
+                        <div class="subs-mini bg-white rounded-2xl overflow-hidden">
+                            <button onclick="togglePlan('plan-special')" id="btn-plan-special" class="plan-accordion-btn w-full flex items-center gap-3 p-4 text-left">
+                                <div class="flex-1 text-center">
+                                    <p class="text-sm text-[#8E5E65]"><span class="font-bold tracking-wide">スペシャルプラン</span><span class="text-[11px] text-gray-400"> ・ 110分整体 ・ 最大限の結果を</span></p>
                                 </div>
-                                <div class="text-[10px] text-gray-400">/2回（月額定額プラン）</div>
-                            </div>
+                                <svg class="plan-chevron w-5 h-5 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div id="plan-special" class="plan-accordion-body">
+                                <div class="px-5 pb-5 pt-1 text-center border-t border-dashed border-gray-100">
+                                    <p class="text-base font-bold text-gray-500 mt-3 mb-3">本日ご契約価格（30%OFF）</p>
 
-                            <!-- 当日契約で30%OFF（控えめ表記） -->
-                            <div class="bg-gray-50 border border-gray-200 rounded-xl p-2.5 mb-4 text-left">
-                                <p class="text-[10px] text-gray-500">当日のご契約なら<span class="font-bold text-[#5D4037]">20%OFF→30%OFF</span>に</p>
-                                <p class="text-[10px] text-gray-400 mt-0.5">11,704円/1回・23,408円/2回（月額定額プラン）</p>
-                            </div>
+                                    <button onclick="toggleAccordion('special-1kai')" class="accordion-btn w-full flex items-center justify-between px-3 py-2.5 bg-gray-50 rounded-xl mb-2">
+                                        <span class="text-sm font-bold text-gray-500">1回あたりの料金（月2回利用の場合）</span>
+                                        <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="special-1kai" class="accordion-body">
+                                        <div class="flex items-end justify-center gap-2 mb-2 mt-2 flex-wrap">
+                                            <span class="text-base text-gray-400 line-through decoration-red-400 decoration-2 whitespace-nowrap">定価 16,720円/1回</span>
+                                            <div class="flex items-baseline gap-1">
+                                                <div class="text-base font-black text-[#5D4037]">11,704</div>
+                                                <div class="text-base font-bold text-[#5D4037]">円 / 1回</div>
+                                            </div>
+                                            <span class="inline-block text-xs font-bold text-white bg-[#E53E3E] px-3 py-1 rounded-full whitespace-nowrap">5,016円お得（30%OFF）</span>
+                                        </div>
+                                    </div>
 
-                            <div class="mt-auto border-t border-dashed border-gray-100 pt-4">
-                                <p class="text-[10px] font-bold text-gray-400 mb-2">＼こちらからお申し込み／</p>
-                                <div class="flex flex-col items-center gap-1.5">
-                                    <span class="inline-flex items-center gap-1 bg-gradient-to-br from-amber-300 to-amber-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow">🎁 特典</span>
-                                    <div id="qr-special" class="bg-white p-1 inline-block border-2 border-amber-300 rounded-lg shadow-inner"></div>
+                                    <button onclick="toggleAccordion('special-2kai')" class="accordion-btn w-full flex items-center justify-between px-3 py-2.5 bg-gray-50 rounded-xl mb-4">
+                                        <span class="text-sm font-bold text-gray-500">2回（月額）の料金</span>
+                                        <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="special-2kai" class="accordion-body">
+                                        <div class="rounded-xl p-3 mb-2 mt-2 flex items-baseline justify-center gap-2 flex-nowrap">
+                                            <span class="text-base text-gray-400 line-through decoration-red-400 decoration-2 whitespace-nowrap">定価33,440円/2回</span>
+                                            <span class="text-4xl font-black text-[#5D4037] whitespace-nowrap">23,408円<span class="text-base font-bold text-[#5D4037]">/2回</span></span>
+                                            <span class="inline-block text-xs font-bold text-white bg-[#E53E3E] px-3 py-1 rounded-full whitespace-nowrap">10,032円お得（30%OFF）</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-t border-dashed border-gray-100 pt-4">
+                                        <p class="text-[10px] font-bold text-gray-400 mb-2">＼こちらからお申し込み／</p>
+                                        <div class="flex flex-col items-center gap-1.5">
+                                            <span class="inline-flex items-center gap-1 bg-gradient-to-br from-amber-300 to-amber-500 text-white text-[9px] font-black px-2.5 py-0.5 rounded-full shadow">🎁 特典</span>
+                                            <div id="qr-special" class="bg-white p-1 inline-block border-2 border-amber-300 rounded-lg shadow-inner"></div>
+                                        </div>
+                                        <div class="text-[0.6rem] text-gray-300 break-all mt-1" id="url-special"></div>
+                                    </div>
                                 </div>
-                                <div class="text-[0.6rem] text-gray-300 break-all mt-1" id="url-special"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 加入手数料無料 単独ハイライト -->
-                    <div class="bg-gradient-to-r from-[#E98B9F] to-[#F4695E] rounded-3xl p-6 max-w-2xl mx-auto text-center text-white shadow-lg mb-6 animate-pulse">
-                        <p class="inline-block text-xs font-black tracking-wide mb-2 bg-white text-[#E53E3E] px-3 py-1 rounded-full shadow">🎉 初回のご契約限定キャンペーン第二弾!!</p>
-                        <p class="text-lg md:text-xl font-black leading-snug">
-                            さらに初回のご契約限定キャンペーンとして<br class="hidden sm:block">
-                            今なら加入手数料3,000円も無料！
-                        </p>
-                    </div>
-
-                    <!-- 全額返金保証への導線 -->
+                    <!-- 全額返金保証への導線（簡潔化） -->
                     <div class="bg-white border-2 border-[#F4A6B6] rounded-2xl p-6 max-w-2xl mx-auto text-center">
-                        <p class="text-sm font-black text-[#E98B9F] mb-3">そしてさらに！！</p>
-                        <p class="inline-block text-xs font-black tracking-wide mb-3 bg-white text-[#E53E3E] border-2 border-[#E53E3E] px-3 py-1 rounded-full">🎉 初回のご契約限定キャンペーン第三弾!!</p>
-                        <p class="text-sm text-[#5D4037] leading-loose">
+                        <span class="text-3xl">🛡️</span>
+                        <p class="text-sm text-[#5D4037] leading-loose mt-2">
                             「不安だな、大丈夫かな、損しないかな・・・」<br>
-                            そんな方のために、業界初!!
+                            そんな方のために、業界初の
                         </p>
-                        <p class="text-2xl md:text-3xl font-black text-white bg-gradient-to-r from-[#E98B9F] to-[#E53E3E] rounded-2xl py-3 px-4 my-4 shadow-lg leading-snug animate-pulse">
+                        <p class="text-xl md:text-2xl font-black text-white bg-gradient-to-r from-[#E98B9F] to-[#E53E3E] rounded-2xl py-3 px-4 my-3 shadow-lg leading-snug">
                             月額定額プラン限定<br>全額返金保証
                         </p>
                         <p class="text-sm text-[#5D4037] leading-loose">
-                            をお付けいたします！！
+                            をお付けしています。詳細は次のセクションをご覧ください。
                         </p>
-                        <p class="text-sm text-[#5D4037] leading-loose mt-4">
+                        <p class="text-xs text-[#8E5E65] leading-loose mt-4">
                             私たちパウワウは2004年の創業以来22年の実績があり、<br>
-                            数十万人の女性の不調をケアしてきた実績があるからこそできるプランになります！<br>
-                            私たちパウワウにお任せください！
+                            数十万人の女性の不調をケアしてきたからこそご用意できるプランです。
                         </p>
                     </div>
                 </div>
@@ -392,13 +437,18 @@
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E98B9F] to-[#F4C6D0]"></div>
 
             <div class="text-center mb-6">
-                <span class="text-4xl">🛡️</span>
-                <h4 class="text-xl font-black text-[#5D4037] mt-2">月額定額プラン限定<br class="md:hidden">全額返金保証</h4>
-                <p class="text-sm text-[#8E5E65] mt-3 leading-relaxed max-w-lg mx-auto">
-                    ご案内した来店ペースで<strong class="text-[#E98B9F]">6ヶ月間</strong>しっかり通っていただいたのに、<br class="hidden md:block">
-                    ご満足いただけなかった場合は、<strong class="text-[#E98B9F]">お支払いいただいた6ヶ月分の月額料金を全額返金</strong>いたします。
-                </p>
+                <button onclick="toggleAccordion('guarantee-detail')" id="btn-guarantee-detail" class="accordion-btn w-full flex flex-col items-center">
+                    <span class="text-4xl">🛡️</span>
+                    <h4 class="text-xl font-black text-[#5D4037] mt-2 flex items-center gap-2">月額定額プラン限定<br class="md:hidden">全額返金保証
+                        <svg class="chevron w-5 h-5 text-[#E98B9F] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </h4>
+                </button>
             </div>
+            <div id="guarantee-detail" class="accordion-body">
+            <p class="text-sm text-[#8E5E65] mt-3 mb-6 leading-relaxed max-w-2xl mx-auto text-center">
+                ご案内した来店ペースで<strong class="text-[#E98B9F]">6ヶ月間</strong>しっかり通っていただいたのに、<br>
+                ご満足いただけなかった場合は、<strong class="text-[#E98B9F]">お支払いいただいた6ヶ月分の月額料金を全額返金</strong>いたします。
+            </p>
 
             <!-- 3条件カード -->
             <div class="grid md:grid-cols-3 gap-4 mb-6">
@@ -422,14 +472,14 @@
             <!-- 流れ -->
             <div class="bg-[#FFF9FA] rounded-2xl p-5 mb-6 border border-pink-100">
                 <p class="text-xs font-bold text-gray-400 mb-3 text-center">お申し込みの流れ</p>
-                <div class="flex items-center justify-center gap-2 text-xs text-[#8E5E65] overflow-x-auto pb-1">
-                    <div class="bg-white border p-2 rounded-lg min-w-[74px] text-center">6ヶ月間<br>継続来店</div>
-                    <svg class="w-3 h-3 text-pink-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    <div class="bg-white border p-2 rounded-lg min-w-[74px] text-center">6ヶ月経過後<br>14日以内に申請</div>
-                    <svg class="w-3 h-3 text-pink-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    <div class="bg-white border p-2 rounded-lg min-w-[74px] text-center">アンケート<br>ご提出</div>
-                    <svg class="w-3 h-3 text-pink-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    <div class="bg-white border p-2 rounded-lg min-w-[74px] text-center">審査の上<br>全額返金</div>
+                <div class="flex items-center justify-center gap-3 text-sm font-bold text-[#8E5E65] overflow-x-auto pb-1">
+                    <div class="bg-white border p-3 rounded-lg min-w-[100px] text-center">6ヶ月間<br>継続来店</div>
+                    <svg class="w-4 h-4 text-pink-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <div class="bg-white border p-3 rounded-lg min-w-[100px] text-center">6ヶ月経過後<br>14日以内に申請</div>
+                    <svg class="w-4 h-4 text-pink-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <div class="bg-white border p-3 rounded-lg min-w-[100px] text-center">アンケート<br>ご提出</div>
+                    <svg class="w-4 h-4 text-pink-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <div class="bg-white border p-3 rounded-lg min-w-[100px] text-center">審査の上<br>全額返金</div>
                 </div>
             </div>
 
@@ -453,6 +503,45 @@
                     <p>・詳細は「月額定額プラン会員契約書」第9条（全額返金保証）をご確認ください。</p>
                 </div>
             </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== クロージング ===== -->
+    <section class="text-center space-y-4">
+        <div class="bg-gradient-to-r from-[#E98B9F] to-[#E53E3E] rounded-3xl p-7 max-w-3xl mx-auto text-white shadow-xl">
+            <p class="text-sm md:text-base opacity-90 leading-relaxed mb-2">
+                施術前にお伝えした「仙骨の歪み度」を覚えていらっしゃいますか？ここで何もしなければ、少しずつ元に戻ってしまいます。
+            </p>
+            <p class="text-base md:text-xl font-black leading-relaxed">
+                今日感じていただいた身体の軽さを、このまま大切にしていってほしいと思っています。
+            </p>
+        </div>
+
+        <!-- リスクゼロの再提示（損失回避） -->
+        <div class="bg-white border-2 border-[#F4A6B6] rounded-3xl p-6 max-w-3xl mx-auto shadow-md">
+            <p class="text-xs font-bold text-[#E98B9F] tracking-wide mb-2">最後に、これだけはお伝えさせてください</p>
+            <p class="text-base md:text-lg text-[#5D4037] leading-relaxed">
+                「本当に続けられるかな、合わなかったらどうしよう…」<br class="hidden sm:block">
+                そう思われる方も、きっと多いと思います。
+            </p>
+            <p class="text-lg md:text-xl font-black text-[#5D4037] leading-relaxed mt-4">
+                だからこそ、月額定額プランには<span class="text-[#E53E3E]">全額返金保証</span>をお付けしました。
+            </p>
+            <p class="text-sm md:text-base text-[#5D4037] leading-relaxed mt-3">
+                6ヶ月間しっかり通っていただいても、もしご満足いただけなければ、<br class="hidden sm:block">
+                お支払いいただいた月額料金は<strong class="text-[#E98B9F]">全額</strong>お返しします。
+            </p>
+            <p class="text-base md:text-lg font-bold text-[#E98B9F] mt-4">
+                ですから、安心して一歩を踏み出していただければと思います。
+            </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <p class="text-sm md:text-base font-bold text-[#5D4037]">
+                当サロンでは<span class="text-[#E98B9F]">スタンダードプラン</span>が最も選ばれています。
+            </p>
+            <p class="text-xs font-bold mt-3 bg-[#FFF0F3] border border-pink-200 text-[#E98B9F] inline-block px-4 py-2 rounded-full">＼上のQRコードから、そのままお申し込みいただけます／</p>
         </div>
     </section>
 </main>
@@ -494,6 +583,22 @@
         const isOpen = body.classList.contains('open');
         body.classList.toggle('open', !isOpen);
         btn.classList.toggle('open', !isOpen);
+    }
+
+    // ===== プランアコーディオン開閉（1つ開くと他は閉じる） =====
+    function togglePlan(id) {
+        const body = document.getElementById(id);
+        const btn  = document.getElementById('btn-' + id);
+        const isOpen = body.classList.contains('open');
+
+        document.querySelectorAll('.plan-accordion-body.open').forEach(el => el.classList.remove('open'));
+        document.querySelectorAll('.plan-accordion-btn.open').forEach(el => el.classList.remove('open'));
+
+        if (!isOpen) {
+            body.classList.add('open');
+            btn.classList.add('open');
+            setTimeout(() => btn.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
+        }
     }
 
     // ===== フォントサイズ =====
